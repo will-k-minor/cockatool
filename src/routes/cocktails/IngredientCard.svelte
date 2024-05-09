@@ -2,19 +2,16 @@
 <script lang=ts>
     export let ingredient: string;
     export let removeIngredient: Function;
-    let editEnabled = false;
 </script>
 
-<button class="ingredient-card" on:click={() => editEnabled = true} >
+<button class="ingredient-card" >
     <div class="card-header">
         <button class="x-button" on:click={() => removeIngredient()}>-</button>
     </div>
     <img src="src/assets/bottle.png" alt="bottle" class="icon-image"/>
     <input 
         type="text"
-        disabled={!editEnabled}
         bind:value={ingredient}
-        on:keydown={(e) => {e.key === 'Enter' && (editEnabled = false)}}
     />
 </button>
 
@@ -31,7 +28,7 @@
         max-width: fit-content;
         max-height: fit-content;
         border: 1px solid #000000;
-        border-radius: 4px;
+        border-radius: 8px;
         background-color: #00aeff;
     }
 
@@ -50,6 +47,7 @@
     input {
         padding: 5px;
         margin: 10px;
+        border-radius: 12px;
     }
 
     .x-button {

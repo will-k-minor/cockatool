@@ -37,7 +37,10 @@
 </script>
 
 <span class="button-options">
-    <button on:click={async () => await fetchCocktails()}>Fetch cocktails</button>    
+    <button on:click={async () => await fetchCocktails()}>
+        <img src={'src/assets/cocktail.png'} alt='cocktail' class="icon-image"/>
+        Fetch cocktails
+    </button>    
 </span>
 
 <div class="grid-container">
@@ -67,14 +70,14 @@
         max-width: 256px;
     }
 
-    icon {
-        width: 50px;
-        height: 50px;
-        background-color: #ffffff;
-    }
-
     p {
         margin: 0;
+    }
+
+    .icon-image {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
     }
 
     div {
