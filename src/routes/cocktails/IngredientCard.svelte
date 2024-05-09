@@ -1,14 +1,13 @@
 
 <script lang=ts>
     export let ingredient: string;
-    export let i;
     export let removeIngredient: Function;
     let editEnabled = false;
 </script>
 
 <button class="ingredient-card" on:click={() => editEnabled = true} >
     <div class="card-header">
-        <button class="x-button" on:click={() => removeIngredient(i)}>-</button>
+        <button class="x-button" on:click={() => removeIngredient()}>-</button>
     </div>
     <img src="src/assets/bottle.png" alt="bottle" class="icon-image"/>
     <input 

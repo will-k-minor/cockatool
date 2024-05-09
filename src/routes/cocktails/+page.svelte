@@ -37,14 +37,16 @@
 </script>
 
 <span class="button-options">
-    <button on:click={addIngredientField}>Add ingredient</button>
     <button on:click={async () => await fetchCocktails()}>Fetch cocktails</button>    
 </span>
 
 <div class="grid-container">
     {#each ingredients as ingredient, i}
-        <IngredientCard bind:ingredient={ingredient} {i} {removeIngredient} />
+        <IngredientCard bind:ingredient={ingredient} removeIngredient={() => removeIngredient(i) }/>
     {/each}
+    <div class="add-ingredient-card">
+        <button class="add-ingredient-button" on:click={addIngredientField}>+</button>
+    </div>
 </div>
 
 {#if recipes.length === 0}
@@ -84,6 +86,30 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 10px;
+    }
+
+    .add-ingredient-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px;
+        margin: 10px;
+        min-width: 150;
+        min-height: 250;
+        max-width: fit-content;
+        max-height: fit-content;
+        border: 1px solid #000000;
+        border-radius: 4px;
+        background-color: #00aeff3b;
+    }
+
+    .add-ingredient-button {
+        background-color: #00aeff00;
+        color: #ffffff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        max-width: min-content;
     }
 
     button {
