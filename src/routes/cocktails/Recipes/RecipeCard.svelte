@@ -1,11 +1,10 @@
 <script lang=ts >
-    import type { RecipeType } from './CocktailTypes.ts';
+    import type { RecipeType } from '../CocktailTypes.js';
 
     export let recipe: RecipeType;
-    export let key: string;
 </script>
 
-<div class="card" key={key}>
+<div class="card">
     <h2 class="recipe-name"> {recipe.name.toUpperCase()} </h2>
     <ul>
     {#each recipe.ingredients as ingredient, i}

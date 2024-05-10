@@ -1,6 +1,6 @@
 <script lang=ts>
-    import IngredientCard from "./IngredientCard.svelte";
-    import RecipeCard from "./RecipeCard.svelte";
+    import IngredientCard from "./Ingredients/IngredientCard.svelte";
+    import RecipeCard from "./Recipes/RecipeCard.svelte";
     import type { RecipeType } from './CocktailTypes.ts';
 
     //useState
@@ -58,16 +58,16 @@
     </div>
 </div>
 
-{#if recipes.length === 0}
+{#if loading }
+    <p>Loading... </p>
+{:else if recipes.length === 0}
     <p>No recipes found</p>
-{:else if loading}
-    <p>Loading...</p>
 {:else}
     <p>Recipes found: {recipes.length}</p>
 {/if}
 
 {#each recipes as recipe, i}
-    <RecipeCard {recipe} key={`cocktail-recipe-${i}`}/>
+    <RecipeCard {recipe} />
 {/each}
 
 <style>
