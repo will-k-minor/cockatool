@@ -3,13 +3,16 @@
     import RecipeCard from "./RecipeCard.svelte";
     import type { RecipeType } from './CocktailTypes.ts';
 
+    //useState
     let ingredients: string[] = [];
     let recipes: RecipeType[] = [];
+    let loading = false;
 
     function addIngredientField() {
         ingredients = [...ingredients, ''];
     }
 
+    // useEffect
     $: console.log(ingredients);
 
     function removeIngredient(index: number) {
@@ -17,6 +20,7 @@
     }
 
     async function fetchCocktails() {
+        loading = true;
         try {
             const response = await fetch(
                 `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients.join(',')}`, 
@@ -32,6 +36,8 @@
         } catch (error) {
             console.error('Fetch error:', error);
             recipes = [];
+        } finally {
+            loading = false;
         }
     }
 </script>
@@ -54,8 +60,10 @@
 
 {#if recipes.length === 0}
     <p>No recipes found</p>
+{:else if loading}
+    <p>Loading...</p>
 {:else}
-    <p>Recipes found!</p>
+    <p>Recipes found: {recipes.length}</p>
 {/if}
 
 {#each recipes as recipe, i}
@@ -117,11 +125,12 @@
 
     button {
         background-color: #00fa15d7;
-        color: #ffffff;
-        border: none;
+        color: #000000;
+        border: 1px solid #000000;
         padding: 10px;
         cursor: pointer;
         max-width: min-content;
+        border-radius: 8px;
     }
 
 </style>

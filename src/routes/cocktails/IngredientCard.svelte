@@ -54,8 +54,9 @@
         background-color: #ff0000d7;
         color: #ffffff;
         border: none;
-        padding: 10px;
+        width: 25px;
+        height: 25px;
         cursor: pointer;
-        max-width: min-content;
+        border-radius: 50%;
     }
 </style>
