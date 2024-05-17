@@ -1,4 +1,5 @@
 <script lang=ts>
+    import { fade, fly } from 'svelte/transition';
     import "./Page.css"
     import IngredientCard from "./Ingredients/IngredientCard.svelte";
     import RecipeCard from "./Recipes/RecipeCard.svelte";
@@ -52,7 +53,7 @@
 
 <div class="grid-container">
     {#each ingredients as ingredient, i}
-        <IngredientCard bind:ingredient={ingredient} removeIngredient={() => removeIngredient(i) }/>
+        <IngredientCard bind:ingredient={ingredient} removeIngredient={() => removeIngredient(i) } />
     {/each}
     <div class="add-ingredient-card">
         <button class="add-ingredient-button" on:click={addIngredientField}>+</button>
@@ -64,9 +65,11 @@
 {:else if recipes.length === 0}
     <p>No recipes found</p>
 {:else}
-    <p>Recipes found: {recipes.length}</p>
+    <p >Recipes found: {recipes.length}</p>
 {/if}
 
 {#each recipes as recipe, i}
-    <RecipeCard {recipe} />
+    <div in:fly={{ y: 200, duration: 2000 }} out:fade>
+        <RecipeCard {recipe} />
+    </div>
 {/each}

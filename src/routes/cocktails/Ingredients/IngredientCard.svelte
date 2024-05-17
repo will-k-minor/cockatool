@@ -1,8 +1,9 @@
 
 <script lang=ts>
     import './Ingredients.css'
-    export let ingredient: string;
+    export let ingredient: string = "default value";
     export let removeIngredient: Function;
+    export let obj: {name: string} = {name: "default name"};
 </script>
 
 <button class="ingredient-card" >
